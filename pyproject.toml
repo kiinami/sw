@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sw"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["kiinami <kinami@posteo.net>"]
 readme = "README.md"
@@ -9,7 +9,19 @@ readme = "README.md"
 python = "^3.9"
 typer = {extras = ["all"], version = "^0.9.0"}
 
+[tool.poetry.scripts]
+sw = "sw.main:app"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.semantic_release]
+version_variable = [
+    "sw/__init__.py:__version__",
+    "pyproject.toml:version"
+]
+branch = "main"
+upload_to_pypi = false
+upload_to_release = true
+build_command = "pip install poetry && poetry build"
